@@ -1,0 +1,32 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "webdata",
+      "host": {
+        "sourcePath": "/var/app/current/webdata"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "web",
+      "image": "nginx",
+      "cpu": 99,
+      "memory": 100,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ],
+      "essential": true,
+      "mountPoints": [
+        {
+          "sourceVolume": "webdata",
+          "containerPath": "/usr/share/nginx/html"
+        }
+      ]
+    }
+  ]
+}
